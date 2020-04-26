@@ -12,6 +12,10 @@ import {
     Jumbotron,
     Breadcrumb,
     BreadcrumbItem,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
   } from "reactstrap";
 import './index.css'
 import { Link} from 'react-router-dom'
@@ -33,15 +37,12 @@ class Header extends Component {
     }
 
     render () {
-        const navStyle = {
-            color : 'white'
-        }
         return (
             <div>
                 <Navbar color="dark" dark expand="md">
                     <Container>
                         <NavbarBrand tag={Link} to="/">                            
-                            <img className="logo" src={logo}></img>
+                            <img className="logo" alt="Logo" src={logo}></img>
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggle} className="border-0" />
                         <Collapse isOpen={this.state.isOpen} navbar>
@@ -61,11 +62,34 @@ class Header extends Component {
                                     Ajout
                                 </NavLink>
                             </NavItem>
-                            <NavItem className="mx-md-2">
-                                <NavLink tag={Link} to="/ventes">
-                                    Vente
-                                </NavLink>
-                            </NavItem>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                    Ventes
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem tag={Link} to="/ventePneu">
+                                    Vente pneu
+                                    </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem>
+                                    Vente accesoire
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                    Historiques
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem tag={Link} to="/historiqueAchatPneu">
+                                    Achat pneus
+                                    </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem>
+                                    Achat accesoire
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
                             <NavItem className="mx-md-2">
                                 <Button outline color="warning" tag={Link} to="/">
                                     Pneumatique AL-BARAKA
@@ -83,8 +107,8 @@ class Header extends Component {
                             <Button tag={Link} to="/formPneu" className="mx-2" color="warning">
                                 Commande
                             </Button>
-                            <Button tag={Link} to="/ventes" className="mx-2" color="warning" outline>
-                                Vente du jour
+                            <Button tag={Link} to="/ventePneu" className="mx-2" color="warning" outline>
+                                Vendre Pneu
                             </Button>
                         </div>
                     </Container>

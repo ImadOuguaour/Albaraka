@@ -23,6 +23,7 @@ class Pneus extends Component {
         this.state = {
             dialogOpen : false,
             openModalDelete : false,
+            alertVisible : true,
             pneu : {
                 id : null,
                 numero : null,
@@ -100,7 +101,9 @@ class Pneus extends Component {
                     <Header title="Stock" onglet="Stock"/>
                     <Container className="conatiner-pneus">
                     {
-                        <Alert hidden={this.props.responseUpdatePneu == null} color="success">
+                        <Alert hidden={this.props.responseUpdatePneu == null} isOpen={this.state.alertVisible} toggle={()=> {
+                            this.setState({alertVisible : false})
+                        }} color="success">
                             Pneu modifier avec success
                         </Alert>
                     }

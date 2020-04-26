@@ -39,8 +39,8 @@ class FormPneu extends Component {
     handleChange = validInput => e => {
         const name = e.target.name;
         let value = e.target.value;
-        if(value != ''){
-            if(name == "marque"){
+        if(value !== ''){
+            if(name === "marque"){
                 value = this.props.marques[value];
             }
             this.setState({[validInput]: true});
@@ -75,6 +75,15 @@ class FormPneu extends Component {
         };
         console.log("form data : ",formData)
         this.props.addPneu(formData);
+        document.getElementById("formPneuId").reset();
+        this.setState({
+            numeroValid:null,
+            marqueValid:null,
+            quantiteValid:null,
+            prixVenteValid:null,
+            prixAchatValid:null,
+            canSubmit:null,
+        },this.onValidStateAllowFormSubmission())
     }
 
     render () {
@@ -92,7 +101,7 @@ class FormPneu extends Component {
                             {this.props.responseAddPneu}
                         </Alert>
                     </div>
-                    <Form className="form-pneu">
+                    <Form className="form-pneu" id="formPneuId">
                     <Col>
                         <FormGroup>
                         <Label for="numPneu">Numéro pneu</Label>
@@ -102,8 +111,8 @@ class FormPneu extends Component {
                             id="numPneu"
                             placeholder="275.13.210.15"
                             onChange={this.handleChange("numeroValid")}
-                            valid = {this.state.numeroValid == true}
-                            invalid={this.state.numeroValid == false}
+                            valid = {this.state.numeroValid === true}
+                            invalid={this.state.numeroValid === false}
                         />
                         </FormGroup>
                     </Col>
@@ -112,8 +121,8 @@ class FormPneu extends Component {
                         <Label for="marquePneu">Marque</Label>
                         <Input type="select" name="marque" id="marquePneu" 
                             onChange={this.handleChange("marqueValid")}
-                            valid = {this.state.marqueValid == true}
-                            invalid={this.state.marqueValid == false}
+                            valid = {this.state.marqueValid === true}
+                            invalid={this.state.marqueValid === false}
                         >
                             <option></option>
                         {
@@ -137,8 +146,8 @@ class FormPneu extends Component {
                             name="quantite"
                             id="quantite"
                             onChange={this.handleChange("quantiteValid")}
-                            valid = {this.state.quantiteValid == true}
-                            invalid={this.state.numeroValid == false}
+                            valid = {this.state.quantiteValid === true}
+                            invalid={this.state.numeroValid === false}
                         />
                         </FormGroup>
                     </Col>
@@ -150,8 +159,8 @@ class FormPneu extends Component {
                             name="prixAchat"
                             id="prixAchat"
                             onChange={this.handleChange("prixAchatValid")}
-                            valid = {this.state.prixAchatValid == true}
-                            invalid={this.state.prixAchatValid == false}
+                            valid = {this.state.prixAchatValid === true}
+                            invalid={this.state.prixAchatValid === false}
                         />
                         </FormGroup>
                     </Col>
@@ -163,8 +172,8 @@ class FormPneu extends Component {
                             name="prixVente"
                             id="prixVente"
                             onChange={this.handleChange("prixVenteValid")}
-                            valid = {this.state.prixVenteValid == true}
-                            invalid={this.state.prixVenteValid == false}
+                            valid = {this.state.prixVenteValid === true}
+                            invalid={this.state.prixVenteValid === false}
                         />
                         </FormGroup>
                     </Col>

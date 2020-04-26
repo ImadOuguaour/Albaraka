@@ -2,12 +2,15 @@ import {
   getPneusSuccess,GET_PNEUS,getPneusError,  getPneus,
   getMarquesSuccess, GET_MARQUES, getMarquesError,
   addPneuSuccess, ADD_PNEU, addPneuError,
-  updatePneuSuccess, UPDATE_PNEU, updatePneuError
+  addVenteSuccess, ADD_VENTE_PNEU, addVenteError,
+  updatePneuSuccess, UPDATE_PNEU, updatePneuError,
+  getTopCinqPneusSuccess, GET_TOP_CINQ_PNEUS, getTopCinqPneusError,
+  getHistoriquePneuSuccess, GET_HISTORIQUE_PNEU, getHistoriquePneuError,
+  getVentePneuSuccess, GET_VENTE_PNEU, getVentePneuError
 } from './actions/index'
 import {call , put, takeLatest} from 'redux-saga/effects'
 import axiosGet from 'axios'
 import axios from 'axios'
-import axiosPost from 'axios'
 
 function* getPneusApi(){
   const requestConfig = {
@@ -25,6 +28,24 @@ function* getPneusApi(){
       yield put(getPneusError());
       console.log("eror when calling api to get data pneu : ",e)
     }
+}
+
+function* getTopCinqPneuApi(){
+  const requestConfig = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  };
+  const url = "http://localhost:8080/api/statistique/topCinqVendu";
+  try{
+      const data = yield call(axiosGet, url, requestConfig)
+      yield put(getTopCinqPneusSuccess(data.data))
+    } catch(e){
+      yield put(getTopCinqPneusError());
+      console.log("eror when calling api to get top cinq pneu : ",e)
+  }
 }
 
 function* getMarquesApi(){
@@ -78,7 +99,7 @@ function* updatePneuApi(action) {
   const url = "http://localhost:8080/api/pneu";
   const apiCall = async () => {
     try {
-      const response = await axios.post(url, data)
+      const response = await axios.put(url, data)
       return response.data
     }
     catch (err) {
@@ -98,10 +119,76 @@ function* updatePneuApi(action) {
   }
 }
 
+function* getHistoriquePneuApi(){
+  const requestConfig = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  };
+  const url = "http://localhost:8080/api/historiqueAchatPneu";
+  try{
+      const data = yield call(axiosGet, url, requestConfig)
+      yield put(getHistoriquePneuSuccess(data.data))
+    } catch(e){
+      yield put(getHistoriquePneuError());
+      console.log("eror when calling api to get historique achat pneu : ",e)
+    }
+}
+
+function* addVentePneu(action) {
+  // Constitution de la requête
+  const data = action.payload
+  const url = "http://localhost:8080/api/vente/pneu";
+  const apiCall = async () => {
+    try {
+      const response = await axios.post(url, data)
+      return response.data
+    }
+    catch (err) {
+      console.log("erreu :", err)
+      throw err
+    }
+  }
+  // Envoi de la requête
+  try {
+    yield call(apiCall)
+    yield put(addVenteSuccess("Votre pneu a été vendu avec succès"));
+    yield put(getPneus());
+  } catch (error) {
+    console.log("hani :",error)
+    yield put(addVenteError("Erreur.")
+    );
+  }
+}
+
+function* getVentePneuApi(){
+  const requestConfig = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  };
+  const url = "http://localhost:8080/api/vente/pneu/today";
+  try{
+      const data = yield call(axiosGet, url, requestConfig)
+      yield put(getVentePneuSuccess(data.data))
+    } catch(e){
+      yield put(getVentePneuError());
+      console.log("eror when calling api to get historique vente pneu : ",e)
+    }
+}
+
 
 export default function* mySaga(){
     yield takeLatest(GET_PNEUS, getPneusApi)
     yield takeLatest(GET_MARQUES,getMarquesApi)
     yield takeLatest(ADD_PNEU,addPneuApi)
     yield takeLatest(UPDATE_PNEU,updatePneuApi)
+    yield takeLatest(GET_HISTORIQUE_PNEU, getHistoriquePneuApi)
+    yield takeLatest(GET_VENTE_PNEU, getVentePneuApi)
+    yield takeLatest(ADD_VENTE_PNEU, addVentePneu)
+    yield takeLatest(GET_TOP_CINQ_PNEUS, getTopCinqPneuApi)
 }
