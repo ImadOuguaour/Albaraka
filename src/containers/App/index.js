@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Pneus from '../Pneus';
-import FormPneu from '../FormPneu'
+import FormPneu from '../FormAjout/FormPneu'
 import Ventes from '../Ventes/Pneus'
 import Footer from '../Footer';
 import Home from '../Home'
-import HistoriqueAchatPneu from '../HistoriqueAchatPneu'
+import HistoriqueAchatPneu from '../Historique/HistoriqueAchatPneu'
+import VenteAccessoire from '../Ventes/Accessoires'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 class App extends Component {    
@@ -17,6 +18,7 @@ class App extends Component {
                 <Route exact path="/pneus" component={Pneus} />
                 <Route path="/formPneu" component={FormPneu} />
                 <Route path="/ventePneu" component={Ventes} />
+                <Route path="/venteAccessoire" component={VenteAccessoire} />
                 <Route path="/historiqueAchatPneu" component={HistoriqueAchatPneu} />
             </Switch>
             <Footer />

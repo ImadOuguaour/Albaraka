@@ -59,7 +59,7 @@ class Header extends Component {
                             </NavItem>
                             <NavItem className="mx-md-2">
                                 <NavLink tag={Link} to="/formPneu">
-                                    Ajout
+                                    Ajout pneu
                                 </NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
@@ -71,7 +71,7 @@ class Header extends Component {
                                     Vente pneu
                                     </DropdownItem>
                                     <DropdownItem divider />
-                                    <DropdownItem>
+                                    <DropdownItem tag={Link} to="/venteAccessoire">
                                     Vente accesoire
                                     </DropdownItem>
                                 </DropdownMenu>
@@ -83,10 +83,6 @@ class Header extends Component {
                                 <DropdownMenu right>
                                     <DropdownItem tag={Link} to="/historiqueAchatPneu">
                                     Achat pneus
-                                    </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                    Achat accesoire
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>

@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import Header from '../Header'
+import Header from '../../Header'
 import MaterialTable from 'material-table'
-import {getHistoriquePneu} from '../../actions/index'
+import {getHistoriquePneu} from '../../../actions'
 import {connect} from 'react-redux';
 import {Spinner, Container} from 'reactstrap';
 
 class HistoriqueAchatPneu extends Component {
 
     componentDidMount(){
-        this.props.getHistoriquePneu(); 
-        console.log("hani : ",this.props.historiquePneu)
+        this.props.getHistoriquePneu();
     }
 
     render() {
@@ -32,6 +31,9 @@ class HistoriqueAchatPneu extends Component {
             }, {
                 title: 'Prix de vente',
                 field: 'prixVente',
+            }, {
+                title: 'Type',
+                field: 'type',
             }]
         return (
             <div>
@@ -41,11 +43,19 @@ class HistoriqueAchatPneu extends Component {
                     this.props.historiquePneu
                     ?
                     <MaterialTable
-                        title="Pneus disponibles"
+                        title="Historiques des achats pneus"
                         columns={columns}
                         data={this.props.historiquePneu}
                         options={{
-                            headerStyle:{color:'black', fontSize:'15px', fontWeight:'bold'},
+                            headerStyle: {
+                                backgroundColor: '#01579b',
+                                color: '#FFF',
+                                fontWeight:'bold',
+                                textAlign : 'center'
+                            },
+                            cellStyle: {
+                            textAlign : 'center',
+                            },
                             paginationType: 'stepped', 
                         }}
                     />
@@ -61,7 +71,6 @@ class HistoriqueAchatPneu extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log("hani f mapState : ",state)
     return {
         historiquePneu : state.data.historiquePneu
     }

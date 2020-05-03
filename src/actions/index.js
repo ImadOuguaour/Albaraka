@@ -22,6 +22,10 @@ export const ADD_VENTE_PNEU= 'ADD_VENTE_PNEU';
 export const ADD_VENTE_PNEU_SUCCESS= 'ADD_VENTE_PNEU_SUCCESS';
 export const ADD_VENTE_PNEU_ERROR= 'ADD_VENTE_PNEU_ERROR';
 
+export const ADD_VENTE_ACCESSOIRE= 'ADD_VENTE_ACCESSOIRE';
+export const ADD_VENTE_ACCESSOIRE_SUCCESS= 'ADD_VENTE_ACCESSOIRE_SUCCESS';
+export const ADD_VENTE_ACCESSOIRE_ERROR= 'ADD_VENTE_ACCESSOIRE_ERROR';
+
 export const UPDATE_PNEU= 'UPDATE_PNEU';
 export const UPDATE_PNEU_SUCCESS= 'UPDATE_PNEU_SUCCESS';
 export const UPDATE_PNEU_ERROR= 'UPDATE_PNEU_SUCCESS';
@@ -33,6 +37,18 @@ export const GET_HISTORIQUE_PNEU_ERROR= 'GET_HISTORIQUE_PNEU_ERROR';
 export const GET_VENTE_PNEU= 'GET_VENTE_PNEU';
 export const GET_VENTE_PNEU_SUCCESS= 'GET_VENTE_PNEU_SUCCESS';
 export const GET_VENTE_PNEU_ERROR= 'GET_VENTE_PNEU_ERROR';
+
+export const GET_VENTE_ACCESSOIRE= 'GET_VENTE_ACCESSOIRE';
+export const GET_VENTE_ACCESSOIRE_SUCCESS= 'GET_VENTE_ACCESSOIRE_SUCCESS';
+export const GET_VENTE_ACCESSOIRE_ERROR= 'GET_VENTE_ACCESSOIRE_ERROR';
+
+export const GET_GAIN_MONTH= 'GET_GAIN_MONTH';
+export const GET_GAIN_MONTH_SUCCESS= 'GET_GAIN_MONTH_SUCCESS';
+export const GET_GAIN_MONTH_ERROR= 'GET_GAIN_MONTH_ERROR';
+
+export const GET_GAIN_HIER= 'GET_GAIN_HIER';
+export const GET_GAIN_HIER_SUCCESS= 'GET_GAIN_HIER_SUCCESS';
+export const GET_GAIN_HIER_ERROR= 'GET_GAIN_HIER_ERROR';
 
 export const getPneus = () => ({
     type: GET_PNEUS,
@@ -120,6 +136,21 @@ export const addVenteError = (responseAddVentePneu) => ({
     payload: responseAddVentePneu
 })
 
+export const addVenteAccessoire = (data) => ({
+    type: ADD_VENTE_ACCESSOIRE,
+    payload: data
+})
+
+export const addVenteAccessoireSuccess = (responseAddVenteAccessoire) => ({
+    type: ADD_VENTE_ACCESSOIRE_SUCCESS,
+    payload: responseAddVenteAccessoire
+})
+
+export const addVenteAccessoireError = (responseAddVenteAccessoire) => ({
+    type: ADD_VENTE_ACCESSOIRE_ERROR,
+    payload: responseAddVenteAccessoire
+})
+
 export const updatePneu = (data) => ({
     type: UPDATE_PNEU,
     payload: data
@@ -161,4 +192,46 @@ export const getVentePneuSuccess = (data) => ({
 export const getVentePneuError = () => ({
     type: GET_VENTE_PNEU_ERROR,
     payload : []
+})
+
+export const getVenteAccessoire = () => ({
+    type: GET_VENTE_ACCESSOIRE,
+})
+
+export const getVenteAccessoireSuccess = (data) => ({
+    type: GET_VENTE_ACCESSOIRE_SUCCESS,
+    payload : data
+})
+
+export const getVenteAccessoireError = () => ({
+    type: GET_VENTE_ACCESSOIRE_ERROR,
+    payload : []
+})
+
+export const getGainMonth = () => ({
+    type: GET_GAIN_MONTH,
+})
+
+export const getGainMonthSuccess = (data) => ({
+    type: GET_GAIN_MONTH_SUCCESS,
+    payload : data
+})
+
+export const getGainMonthError = () => ({
+    type: GET_GAIN_MONTH_ERROR,
+    payload : ""
+})
+
+export const getGainHier = () => ({
+    type: GET_GAIN_HIER,
+})
+
+export const getGainHierSuccess = (data) => ({
+    type: GET_GAIN_HIER_SUCCESS,
+    payload : data
+})
+
+export const getGainHierError = () => ({
+    type: GET_GAIN_HIER_ERROR,
+    payload : ""
 })

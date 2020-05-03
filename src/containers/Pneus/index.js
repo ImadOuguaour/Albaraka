@@ -56,10 +56,10 @@ class Pneus extends Component {
             quantite: this.state.pneu.quantite,
             prixAchat: this.state.pneu.prixAchat,
             prixVente: this.state.pneu.prixVente,
-            marque: this.state.pneu.marque
+            marque: this.state.pneu.marque,
+            type: this.state.pneu.type
         };
         this.props.updatePneu(formData);
-        //this.props.getPneus();
     }
 
     handleChange(e){
@@ -95,6 +95,9 @@ class Pneus extends Component {
             }, {
                 title: 'Prix de vente',
                 field: 'prixVente',
+            }, {
+                title: 'Type',
+                field: 'type',
             }]
             return (
                 <div>
@@ -116,13 +119,21 @@ class Pneus extends Component {
                                 columns={columns}
                                 data={this.props.pneus}
                                 options={{
-                                    headerStyle:{color:'black', fontSize:'15px', fontWeight:'bold'},
+                                    headerStyle: {
+                                        backgroundColor: '#01579b',
+                                        color: '#FFF',
+                                        fontWeight:'bold',
+                                        textAlign : 'center'
+                                    },
+                                    cellStyle: {
+                                    textAlign : 'center',
+                                    },
                                     paginationType: 'stepped', 
                                 }}
                                 actions={[
                                     {
                                     icon: 'edit',
-                                    iconProps: { style: {color: "blue" } },
+                                    iconProps: { style: {color: "skyBlue" } },
                                     tooltip: "Modifier pneu",
                                     onClick: ((rowData, data) => {
                                         return this.openModal(rowData, data)
