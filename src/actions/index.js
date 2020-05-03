@@ -1,14 +1,18 @@
 export const GET_PNEUS= 'GET_PNEUS';
 export const GET_PNEUS_SUCCESS= 'GET_PNEUS_SUCCESS';
-export const GET_PNEUS_ERROR= 'GET_PNEUS_SUCCESS';
+export const GET_PNEUS_ERROR= 'GET_PNEUS_ERROR';
 
 export const GET_TOP_CINQ_PNEUS= 'GET_TOP_CINQ_PNEUS';
 export const GET_TOP_CINQ_PNEUS_SUCCESS= 'GET_TOP_CINQ_PNEUS_SUCCESS';
-export const GET_TOP_CINQ_PNEUS_ERROR= 'GET_TOP_CINQ_PNEUS_SUCCESS';
+export const GET_TOP_CINQ_PNEUS_ERROR= 'GET_TOP_CINQ_PNEUS_ERROR';
+
+export const GET_POURCENTAGE_MARQUE= 'GET_POURCENTAGE_MARQUE';
+export const GET_POURCENTAGE_MARQUE_SUCCESS= 'GET_POURCENTAGE_MARQUE_SUCCESS';
+export const GET_POURCENTAGE_MARQUE_ERROR= 'GET_POURCENTAGE_MARQUE_ERROR';
 
 export const GET_PNEUS_BY_MARQUE= 'GET_PNEUS_BY_MARQUE';
 export const GET_PNEUS_BY_MARQUE_SUCCESS= 'GET_PNEUS_BY_MARQUE_SUCCESS';
-export const GET_PNEUS_BY_MARQUE_ERROR= 'GET_PNEUS_BY_MARQUE_SUCCESS';
+export const GET_PNEUS_BY_MARQUE_ERROR= 'GET_PNEUS_BY_MARQUE_ERROR';
 
 export const GET_MARQUES= 'GET_MARQUES';
 export const GET_MARQUES_SUCCESS= 'GET_MARQUES_SUCCESS';
@@ -28,7 +32,7 @@ export const ADD_VENTE_ACCESSOIRE_ERROR= 'ADD_VENTE_ACCESSOIRE_ERROR';
 
 export const UPDATE_PNEU= 'UPDATE_PNEU';
 export const UPDATE_PNEU_SUCCESS= 'UPDATE_PNEU_SUCCESS';
-export const UPDATE_PNEU_ERROR= 'UPDATE_PNEU_SUCCESS';
+export const UPDATE_PNEU_ERROR= 'UPDATE_PNEU_ERROR';
 
 export const GET_HISTORIQUE_PNEU= 'GET_HISTORIQUE_PNEU';
 export const GET_HISTORIQUE_PNEU_SUCCESS= 'GET_HISTORIQUE_PNEU_SUCCESS';
@@ -75,6 +79,20 @@ export const getTopCinqPneusSuccess = (data) => ({
 
 export const getTopCinqPneusError = () => ({
     type: GET_TOP_CINQ_PNEUS_ERROR,
+    payload : []
+})
+
+export const getPourcentageMarque = () => ({
+    type: GET_POURCENTAGE_MARQUE,
+})
+
+export const getPourcentageMarqueSuccess = (data) => ({
+    type: GET_POURCENTAGE_MARQUE_SUCCESS,
+    payload : data
+})
+
+export const getPourcentageMarqueError = () => ({
+    type: GET_POURCENTAGE_MARQUE_ERROR,
     payload : []
 })
 

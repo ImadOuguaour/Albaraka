@@ -6,6 +6,7 @@ import {
     ADD_VENTE_ACCESSOIRE, ADD_VENTE_ACCESSOIRE_SUCCESS, ADD_VENTE_ACCESSOIRE_ERROR,
     UPDATE_PNEU, UPDATE_PNEU_SUCCESS, UPDATE_PNEU_ERROR,
     GET_TOP_CINQ_PNEUS, GET_TOP_CINQ_PNEUS_SUCCESS, GET_TOP_CINQ_PNEUS_ERROR,
+    GET_POURCENTAGE_MARQUE, GET_POURCENTAGE_MARQUE_SUCCESS, GET_POURCENTAGE_MARQUE_ERROR,
     GET_HISTORIQUE_PNEU, GET_HISTORIQUE_PNEU_SUCCESS, GET_HISTORIQUE_PNEU_ERROR,
     GET_VENTE_PNEU, GET_VENTE_PNEU_SUCCESS, GET_VENTE_PNEU_ERROR,
     GET_VENTE_ACCESSOIRE, GET_VENTE_ACCESSOIRE_SUCCESS, GET_VENTE_ACCESSOIRE_ERROR,
@@ -18,6 +19,7 @@ const INIT_STATE = {
     pneus: [],
     marques: [],
     topCinqPneusVendu: [],
+    pourcentageByMarque : [],
     historiquePneu: [],
     historiqueVentePneuToday: [],
     historiqueVenteAccessoireToday: [],
@@ -41,11 +43,21 @@ export default function(state = [INIT_STATE], action) {
         case GET_PNEUS_ERROR : {
             return { ...state, pneus : action.payload}
         };
+        case GET_POURCENTAGE_MARQUE : {
+            return { ...state}
+        }
+        case GET_POURCENTAGE_MARQUE_SUCCESS : {
+            return {  ...state, pourcentageByMarque : action.payload, topCinqPneusVendu : state.topCinqPneusVendu}
+        };
+        case GET_POURCENTAGE_MARQUE_ERROR : {
+            return { ...state, pourcentageByMarque : action.payload}
+        };
         case GET_TOP_CINQ_PNEUS : {
             return { ...state}
         }
         case GET_TOP_CINQ_PNEUS_SUCCESS : {
-            return {  topCinqPneusVendu : action.payload, historiqueVentePneuToday: state.historiqueVentePneuToday, historiqueVenteAccessoireToday : state.historiqueVenteAccessoireToday}
+            return {  topCinqPneusVendu : action.payload, historiqueVentePneuToday: state.historiqueVentePneuToday, 
+                historiqueVenteAccessoireToday : state.historiqueVenteAccessoireToday,pourcentageByMarque : state.pourcentageByMarque}
         };
         case GET_TOP_CINQ_PNEUS_ERROR : {
             return { ...state, topCinqPneusVendu : action.payload}

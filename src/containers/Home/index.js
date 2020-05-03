@@ -3,7 +3,7 @@ import Header from '../Header';
 import {Container, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane, Spinner, Badge} from 'reactstrap';
 import CanvasJSReact from '../../canvasjs.react';
 import {connect} from 'react-redux';
-import {getTopCinqPneus, getVentePneu, getVenteAccessoire, getGainMonth, getGainHier} from '../../actions/index'
+import {getTopCinqPneus, getVentePneu, getVenteAccessoire, getGainMonth, getGainHier, getPourcentageMarque} from '../../actions/index'
 import classnames from 'classnames';
 import MaterialTable from 'material-table'
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,7 +35,8 @@ class Home extends React.Component {
     if(this.state.activeTab !== tab)
       this.setState({activeTab : tab},()=>{
         if(this.state.activeTab === '4'){
-          this.props.getTopCinqPneus()
+          this.props.getTopCinqPneus();
+          this.props.getPourcentageMarque();
         }else if(this.state.activeTab === '2'){
           this.props.getVentePneu()
         }else if(this.state.activeTab === '1'){
@@ -72,8 +73,10 @@ class Home extends React.Component {
 
   render(){
     const options = {
+      exportEnabled: true,
+      theme : "dark2",
       title: {
-        text: "TOP 5 MARQUES LES PLUS VENDUES"
+        text: "TOP 5 MARQUES "
       },
       data: [
       {
@@ -81,6 +84,21 @@ class Home extends React.Component {
         dataPoints: this.props.topCinqPneusVendu
       }
       ]
+    }
+
+    const options2 = {
+      animationEnabled: true,
+      exportEnabled: true,
+      theme: "dark2", // "light1", "dark1", "dark2"
+      title:{
+        text: "QUANTITE MARQUE STOCK"
+      },
+      data: [{
+        type: "pie",
+        indexLabel: "{label}: {y}%",		
+        startAngle: -50,
+        dataPoints: this.props.pourcentageByMarque
+      }]
     }
 
     const columns = [
@@ -132,28 +150,7 @@ class Home extends React.Component {
           headerStyle: {
             backgroundColor: '#01579b',
           }
-      }]
-    
-    const options2 = {
-      animationEnabled: true,
-      exportEnabled: true,
-      theme: "dark2", // "light1", "dark1", "dark2"
-      title:{
-        text: "QUANTITE MARQUE STOCK"
-      },
-      data: [{
-        type: "pie",
-        indexLabel: "{label}: {y}%",		
-        startAngle: -90,
-        dataPoints: [
-          { "y": 20, "label": "GoodYear" },
-          { y: 24, label: "Michelin" },
-          { y: 20, label: "Perrili" },
-          { y: 14, label: "Dunlop" },
-          { y: 12, label: "Bridgeston" }
-        ]
-      }]
-    }
+    }]
 
     return (
       <div>
@@ -329,6 +326,7 @@ function mapStateToProps(state) {
   console.log("hani f mapState : ",state)
   return {
       topCinqPneusVendu : state.data.topCinqPneusVendu,
+      pourcentageByMarque : state.data.pourcentageByMarque,
       historiqueVentePneuToday : state.data.historiqueVentePneuToday,
       historiqueVenteAccessoireToday : state.data.historiqueVenteAccessoireToday,
       gainOfMonth : state.data.gainOfMonth,
@@ -340,6 +338,7 @@ function mapDispatchToProps(dispatch){
   return {
     getGainMonth: () => dispatch(getGainMonth()),
     getTopCinqPneus: () => dispatch(getTopCinqPneus()),
+    getPourcentageMarque: () => dispatch(getPourcentageMarque()),
     getVentePneu: () => dispatch(getVentePneu()),
     getVenteAccessoire: () => dispatch(getVenteAccessoire()),
     getGainHier: () => dispatch(getGainHier())

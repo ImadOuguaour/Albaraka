@@ -6,11 +6,12 @@ import {
   addVenteAccessoireSuccess, ADD_VENTE_ACCESSOIRE, addVenteAccessoireError,
   updatePneuSuccess, UPDATE_PNEU, updatePneuError,
   getTopCinqPneusSuccess, GET_TOP_CINQ_PNEUS, getTopCinqPneusError,
+  getPourcentageMarqueSuccess, GET_POURCENTAGE_MARQUE, getPourcentageMarqueError,
   getHistoriquePneuSuccess, GET_HISTORIQUE_PNEU, getHistoriquePneuError,
   getVentePneuSuccess, GET_VENTE_PNEU, getVentePneuError,
   getVenteAccessoireSuccess, GET_VENTE_ACCESSOIRE, getVenteAccessoireError,
   getGainMonthSuccess, GET_GAIN_MONTH, getGainMonthError,
-  getGainHierSuccess, GET_GAIN_HIER, getGainHierError, getGainHier
+  getGainHierSuccess, GET_GAIN_HIER, getGainHierError, getGainHier, getPourcentageMarque
 } from './actions/index'
 import {call , put, takeLatest} from 'redux-saga/effects'
 import axiosGet from 'axios'
@@ -49,6 +50,24 @@ function* getTopCinqPneuApi(){
     } catch(e){
       yield put(getTopCinqPneusError());
       console.log("eror when calling api to get top cinq pneu : ",e)
+  }
+}
+
+function* getPourcentageByMarqueApi(){
+  const requestConfig = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  };
+  const url = "http://localhost:8080/api/statistique/pourcentageMarque";
+  try{
+      const data = yield call(axiosGet, url, requestConfig)
+      yield put(getPourcentageMarqueSuccess(data.data))
+    } catch(e){
+      yield put(getPourcentageMarqueError());
+      console.log("eror when calling api to get pourcentage by marque : ",e)
   }
 }
 
@@ -276,6 +295,7 @@ export default function* mySaga(){
     yield takeLatest(ADD_VENTE_PNEU, addVentePneu)
     yield takeLatest(ADD_VENTE_ACCESSOIRE, addVenteAccessoire)
     yield takeLatest(GET_TOP_CINQ_PNEUS, getTopCinqPneuApi)
+    yield takeLatest(GET_POURCENTAGE_MARQUE, getPourcentageByMarqueApi)
     yield takeLatest(GET_GAIN_MONTH, getGainOfMonthApi)
     yield takeLatest(GET_GAIN_HIER, getGainOfHierApi)
 }
