@@ -25,7 +25,7 @@ function* getPneusApi(){
         "Content-Type": "application/json"
       }
     };
-  const url = "http://localhost:8080/api/pneu";
+  const url = "/api/pneu";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getPneusSuccess(data.data))
@@ -43,7 +43,7 @@ function* getTopCinqPneuApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/statistique/topCinqVendu";
+  const url = "/api/statistique/topCinqVendu";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getTopCinqPneusSuccess(data.data))
@@ -61,7 +61,7 @@ function* getPourcentageByMarqueApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/statistique/pourcentageMarque";
+  const url = "/api/statistique/pourcentageMarque";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getPourcentageMarqueSuccess(data.data))
@@ -79,7 +79,7 @@ function* getMarquesApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/marque";
+  const url = "/api/marque";
   try{
     console.log("hani f saga 1")
     const data = yield call(axiosGet, url, requestConfig)
@@ -95,7 +95,7 @@ function* getMarquesApi(){
 function* addPneuApi(action) {
   // Constitution de la requête
   const data = action.payload
-  const url = "http://localhost:8080/api/pneu";
+  const url = "/api/pneu";
   const apiCall = async () => {
     try {
       const response = await axios.post(url, data)
@@ -119,7 +119,7 @@ function* addPneuApi(action) {
 
 function* updatePneuApi(action) {
   const data = action.payload
-  const url = "http://localhost:8080/api/pneu";
+  const url = " /api/pneu";
   const apiCall = async () => {
     try {
       const response = await axios.put(url, data)
@@ -150,7 +150,7 @@ function* getHistoriquePneuApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/historiqueAchatPneu";
+  const url = "/api/historiqueAchatPneu";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getHistoriquePneuSuccess(data.data))
@@ -163,7 +163,7 @@ function* getHistoriquePneuApi(){
 function* addVentePneu(action) {
   // Constitution de la requête
   const data = action.payload
-  const url = "http://localhost:8080/api/vente/pneu";
+  const url = "/api/vente/pneu";
   const apiCall = async () => {
     try {
       const response = await axios.post(url, data)
@@ -189,7 +189,7 @@ function* addVentePneu(action) {
 function* addVenteAccessoire(action) {
   // Constitution de la requête
   const data = action.payload
-  const url = "http://localhost:8080/api/vente/accessoire";
+  const url = "/api/vente/accessoire";
   const apiCall = async () => {
     try {
       const response = await axios.post(url, data)
@@ -219,7 +219,7 @@ function* getVentePneuApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/vente/pneu/today";
+  const url = "/api/vente/pneu/today";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getVentePneuSuccess(data.data))
@@ -237,7 +237,7 @@ function* getVenteAccessoireApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/vente/accessoire/today";
+  const url = "/api/vente/accessoire/today";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getVenteAccessoireSuccess(data.data))
@@ -255,7 +255,7 @@ function* getGainOfMonthApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/gain/month";
+  const url = "/api/gain/month";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getGainMonthSuccess(data.data))
@@ -273,7 +273,7 @@ function* getGainOfHierApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "http://localhost:8080/api/gain/yesterday";
+  const url = "/api/gain/yesterday";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getGainHierSuccess(data.data))
