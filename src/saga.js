@@ -17,8 +17,8 @@ import {call , put, takeLatest} from 'redux-saga/effects'
 import axiosGet from 'axios'
 import axios from 'axios'
 
-const BACK_URL = "http://barakabe-env.eba-ymmg88m2.eu-west-1.elasticbeanstalk.com";
-//const BACK_URL = "http://localhost:8080";
+//const BACK_URL = "http://barakabe-env.eba-ymmg88m2.eu-west-1.elasticbeanstalk.com";
+const BACK_URL = "http://localhost:8080";
 function* getPneusApi(){
   const requestConfig = {
       method: "GET",
