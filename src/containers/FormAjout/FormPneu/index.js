@@ -133,7 +133,7 @@ class FormPneu extends Component {
                     </div>
                     <Form className="form-pneu" id="formPneuId">
                     <Row>
-                        <Col>
+                        <Col md={6}>
                             <FormGroup>
                                 <Label for="typePneu">Type Pneu</Label>
                                 <Input type="select" name="type" id="typePneu"
@@ -147,7 +147,7 @@ class FormPneu extends Component {
                                 </Input>
                             </FormGroup>
                         </Col>
-                        <Col>
+                        <Col md={6}>
                             <FormGroup>
                             <Label for="numPneu">Numéro pneu</Label>
                             <Input
@@ -164,7 +164,7 @@ class FormPneu extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col md={6}>
                             <FormGroup>
                             <Label for="marquePneu">Marque</Label>
                             <Input type="select" name="marque" id="marquePneu" 
@@ -186,7 +186,7 @@ class FormPneu extends Component {
                             </Input>
                             </FormGroup>
                         </Col>
-                        <Col>
+                        <Col md={6}>
                             <FormGroup>
                             <Label for="quantite">Quantité</Label>
                             <Input
@@ -202,7 +202,7 @@ class FormPneu extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col md={6}>
                             <FormGroup>
                             <Label for="prixAchat">Prix d'achat</Label>
                             <Input
@@ -216,7 +216,7 @@ class FormPneu extends Component {
                             />
                             </FormGroup>
                         </Col>
-                        <Col>
+                        <Col md={6}>
                             <FormGroup>
                             <Label for="prixVente">Prix de vente</Label>
                             <Input
@@ -232,8 +232,9 @@ class FormPneu extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col className="text-right">
+                        <Col md={6} lg={6} sm={6} xs={6} className="text-right">
                             <Button 
+                            size="sm"
                             outline
                                 disabled={!this.state.canSubmit}
                                 onClick={this.handleSubmit}
@@ -241,8 +242,9 @@ class FormPneu extends Component {
                                     Ajouter
                             </Button>
                         </Col>
-                        <Col className="text-left">
+                        <Col md={6} lg={6} sm={6} xs={6} className="text-left">
                             <Button outline 
+                                size="sm"
                                 onClick={()=>{this.props.history.push("/pneus")}}
                                 color="primary">
                                     Accueil

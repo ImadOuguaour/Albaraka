@@ -6,8 +6,8 @@
 
 .form-pneu-vente{
     background-color: rgba(0, 61, 138, 0.08);
-    padding-left : 200px;
-    padding-right: 200px;
+    padding-left : 120px;
+    padding-right: 120px;
     padding-top: 20px;
     padding-bottom: 20px;
     text-decoration: inherit;
@@ -16,3 +16,18 @@
     font-family: 'Open Sans','Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;
     font-weight: bold;
 }
+
+@media (max-width: 767px) {
+    .form-pneu-vente{
+        background-color: rgba(0, 61, 138, 0.08);
+        padding-left : 50px;
+        padding-right: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-decoration: inherit;
+        color: #000000;
+        text-shadow: none;  
+        font-family: 'Open Sans','Montserrat','Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-weight: bold;
+    }
+  }

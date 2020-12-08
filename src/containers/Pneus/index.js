@@ -63,8 +63,6 @@ class Pneus extends Component {
     }
 
     handleChange(e){
-        console.log("e ",e.target.value)
-        console.log("name ",e.target.name)
         const name = e.target.name
         const valeur = e.target.value
         this.setState(prevState => ({
@@ -222,7 +220,6 @@ Pneus.protoTypes ={
 }
 
 function mapStateToProps(state) {
-    console.log("hani f mapState : ",state)
     return {
         pneus : state.data.pneus,
         responseUpdatePneu : state.data.responseUpdatePneu

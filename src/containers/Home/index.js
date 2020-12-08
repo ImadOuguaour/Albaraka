@@ -193,7 +193,7 @@ class Home extends React.Component {
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1" className="tab-pane"> 
                 <Row>
-                  <Col>
+                  <Col md={12} lg={4} className="responsive-phone">
                   {
                     this.props.historiqueVenteAccessoireToday && this.props.historiqueVentePneuToday
                     ?
@@ -212,8 +212,8 @@ class Home extends React.Component {
                         <Spinner style={{ width: '10rem', height: '10rem' }} color="success" />
                     </div>
                   }
-                  </Col>
-                  <Col>
+                  </Col >
+                  <Col md={12} lg={4} className="responsive-phone">
                   <Alert severity="warning">
                     <AlertTitle>Gain <strong>d'hier</strong></AlertTitle>
                       <h5>
@@ -223,7 +223,7 @@ class Home extends React.Component {
                       </h5>
                   </Alert>
                   </Col>
-                  <Col>
+                  <Col md={12} lg={4}>
                   {
                     <Alert severity="info">
                       <AlertTitle>Gain du mois <strong>{this.getMois()} {this.state.dateOfToday.getFullYear()}</strong></AlertTitle>
@@ -301,12 +301,12 @@ class Home extends React.Component {
             </TabPane>
             <TabPane tabId="4" className="tab-pane">
                 <Row>
-                  <Col>
+                  <Col sm={12} lg={6} className="responsive-phone">
                     <CanvasJSChart options = {options}
                         /* onRef = {ref => this.chart = ref} */
                     />  
                   </Col>
-                  <Col>
+                  <Col sm={12} lg={6}>
                     <CanvasJSChart options = {options2} 
                       /* onRef={ref => this.chart = ref} */
                     />
@@ -323,7 +323,6 @@ class Home extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("hani f mapState : ",state)
   return {
       topCinqPneusVendu : state.data.topCinqPneusVendu,
       pourcentageByMarque : state.data.pourcentageByMarque,

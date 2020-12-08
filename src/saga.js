@@ -17,6 +17,8 @@ import {call , put, takeLatest} from 'redux-saga/effects'
 import axiosGet from 'axios'
 import axios from 'axios'
 
+const BACK_URL = "http://barakabe-env.eba-ymmg88m2.eu-west-1.elasticbeanstalk.com";
+//const BACK_URL = "http://localhost:8080";
 function* getPneusApi(){
   const requestConfig = {
       method: "GET",
@@ -25,7 +27,7 @@ function* getPneusApi(){
         "Content-Type": "application/json"
       }
     };
-  const url = "/api/pneu";
+  const url = BACK_URL+"/api/pneu";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getPneusSuccess(data.data))
@@ -43,7 +45,7 @@ function* getTopCinqPneuApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/statistique/topCinqVendu";
+  const url = BACK_URL+"/api/statistique/topCinqVendu";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getTopCinqPneusSuccess(data.data))
@@ -61,7 +63,7 @@ function* getPourcentageByMarqueApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/statistique/pourcentageMarque";
+  const url = BACK_URL+"/api/statistique/pourcentageMarque";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getPourcentageMarqueSuccess(data.data))
@@ -79,13 +81,10 @@ function* getMarquesApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/marque";
+  const url = BACK_URL+"/api/marque";
   try{
-    console.log("hani f saga 1")
     const data = yield call(axiosGet, url, requestConfig)
     yield put(getMarquesSuccess(data.data))
-    
-    console.log("hani f saga 2")
   } catch(e){
       yield put(getMarquesError());
       console.log("eror when calling api to get data marques : ",e)
@@ -95,7 +94,7 @@ function* getMarquesApi(){
 function* addPneuApi(action) {
   // Constitution de la requête
   const data = action.payload
-  const url = "/api/pneu";
+  const url = BACK_URL+"/api/pneu";
   const apiCall = async () => {
     try {
       const response = await axios.post(url, data)
@@ -111,7 +110,7 @@ function* addPneuApi(action) {
     yield call(apiCall)
     yield put(addPneuSuccess("Votre commande a été ajoutée avec succès"));
   } catch (error) {
-    console.log("hani :",error)
+    console.log("error :",error)
     yield put(addPneuError("Erreur.")
     );
   }
@@ -126,7 +125,7 @@ function* updatePneuApi(action) {
       return response.data
     }
     catch (err) {
-      console.log("erreu :", err)
+      console.log("error :", err)
       throw err
     }
   }
@@ -136,7 +135,7 @@ function* updatePneuApi(action) {
     yield put(getPneus());
     yield put(updatePneuSuccess("Votre pneu a été modifié avec succès"));
   } catch (error) {
-    console.log("hani :",error)
+    console.log("error :",error)
     yield put(updatePneuError("Erreur.")
     );
   }
@@ -150,7 +149,7 @@ function* getHistoriquePneuApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/historiqueAchatPneu";
+  const url = BACK_URL+"/api/historiqueAchatPneu";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getHistoriquePneuSuccess(data.data))
@@ -163,14 +162,14 @@ function* getHistoriquePneuApi(){
 function* addVentePneu(action) {
   // Constitution de la requête
   const data = action.payload
-  const url = "/api/vente/pneu";
+  const url = BACK_URL+"/api/vente/pneu";
   const apiCall = async () => {
     try {
       const response = await axios.post(url, data)
       return response.data
     }
     catch (err) {
-      console.log("erreu :", err)
+      console.log("error :", err)
       throw err
     }
   }
@@ -180,7 +179,7 @@ function* addVentePneu(action) {
     yield put(addVenteSuccess("Votre pneu a été vendu avec succès"));
     yield put(getPneus());
   } catch (error) {
-    console.log("hani :",error)
+    console.log("error :",error)
     yield put(addVenteError("Erreur.")
     );
   }
@@ -189,14 +188,14 @@ function* addVentePneu(action) {
 function* addVenteAccessoire(action) {
   // Constitution de la requête
   const data = action.payload
-  const url = "/api/vente/accessoire";
+  const url = BACK_URL+"/api/vente/accessoire";
   const apiCall = async () => {
     try {
       const response = await axios.post(url, data)
       return response.data
     }
     catch (err) {
-      console.log("erreu :", err)
+      console.log("error :", err)
       throw err
     }
   }
@@ -205,7 +204,7 @@ function* addVenteAccessoire(action) {
     yield call(apiCall)
     yield put(addVenteAccessoireSuccess("Votre accessoire a été vendu avec succès"));
   } catch (error) {
-    console.log("hani :",error)
+    console.log("error :",error)
     yield put(addVenteAccessoireError("Erreur.")
     );
   }
@@ -219,7 +218,7 @@ function* getVentePneuApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/vente/pneu/today";
+  const url = BACK_URL+"/api/vente/pneu/today";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getVentePneuSuccess(data.data))
@@ -237,7 +236,7 @@ function* getVenteAccessoireApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/vente/accessoire/today";
+  const url = BACK_URL+"/api/vente/accessoire/today";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getVenteAccessoireSuccess(data.data))
@@ -255,7 +254,7 @@ function* getGainOfMonthApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/gain/month";
+  const url = BACK_URL+"/api/gain/month";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getGainMonthSuccess(data.data))
@@ -273,7 +272,7 @@ function* getGainOfHierApi(){
       "Content-Type": "application/json"
     }
   };
-  const url = "/api/gain/yesterday";
+  const url = BACK_URL+"/api/gain/yesterday";
   try{
       const data = yield call(axiosGet, url, requestConfig)
       yield put(getGainHierSuccess(data.data))

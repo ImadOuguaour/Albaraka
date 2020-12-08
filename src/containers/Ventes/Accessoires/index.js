@@ -29,10 +29,8 @@ class VenteAccessoire extends Component {
     }
 
     setPrixVente(quantite){
-        console.log("hani hna : ",this.state.accessoire)
         switch (this.state.accessoire) {
             case "Tubeless":
-                console.log("hani hna daba : ")
                 this.setState({prixVente : 10*quantite, prixVenteValid : true})
                 break;
             case "Montage":
@@ -126,7 +124,7 @@ class VenteAccessoire extends Component {
                     </div>
                     <Form className="form-pneu-vente">
                         <Row>
-                            <Col>
+                            <Col md={6}>
                                 <FormGroup>
                                     <Label for="accessoire">Accessoire</Label>
                                     <Input type="select" name="accessoire" id="accessoire"
@@ -143,7 +141,7 @@ class VenteAccessoire extends Component {
                                     </Input>
                                 </FormGroup>
                             </Col>
-                            <Col>
+                            <Col md={6}>
                                 <FormGroup>
                                 <Label for="quantite">Quantité</Label>
                                 <Input
@@ -159,7 +157,7 @@ class VenteAccessoire extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md = {6}>
+                            <Col md={6}>
                                 <FormGroup>
                                     <Label for="prixVente">Prix de vente</Label>
                                     <Input

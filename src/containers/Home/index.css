@@ -1,7 +1,11 @@
 .tab-pane{
     padding: 60px;
+    margin: 20px;
 }
 
+.responsive-phone{
+    margin-bottom: 20px;
+}
 .nav-link{
     cursor: pointer;
     font-family: calibri;

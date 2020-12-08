@@ -252,7 +252,7 @@ class Ventes extends Component {
                     </div>
                     <Form className="form-pneu-vente" id="formVentePneuId">
                         <Row>
-                            <Col>
+                            <Col md={6}>
                                 <FormGroup>
                                     <Label for="typePneu">Type Pneu</Label>
                                     <Input type="select" name="type" id="typePneu"
@@ -266,7 +266,7 @@ class Ventes extends Component {
                                     </Input>
                                 </FormGroup>
                             </Col>
-                            <Col>
+                            <Col md={6}>
                                 <FormGroup>
                                 <Label for="marquePneu">Marque</Label>
                                 <Input type="select" name="marque" id="marquePneu" 
@@ -289,7 +289,7 @@ class Ventes extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col md={6}>
                                 <FormGroup>
                                 <Label for="numeroPneu">Numéro</Label>
                                 <Input type="select" name="numero" id="numeroPneu" 
@@ -310,7 +310,7 @@ class Ventes extends Component {
                                 </Input>
                                 </FormGroup>
                             </Col>
-                            <Col >
+                            <Col md={6}>
                                 <FormGroup>
                                 <Label for="quantite">Quantité</Label>
                                 <Input
@@ -348,7 +348,7 @@ class Ventes extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col className="text-right">
+                            <Col lg={12} className="text-right">
                                     <Button 
                                         outline
                                         disabled={!this.state.canSubmit}
